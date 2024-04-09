@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+<title>FORM</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 float-right mt-3 mb-3">
+            <a class="btn btn-outline-success btn-sm" href="{% url 'student_create_url' %}">New</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">ROLL</th>
+                      <th scope="col">NAME</th>
+                      <th scope="col">MARKS</th>
+                      <th scope="col">MOBILE NO</th>
+                        <th>ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for rec in object_list %}
+                    <tr>
+                      <th scope="row">{{rec.roll}}</th>
+                      <td>{{rec.name}}</td>
+                      <td>{{rec.marks}}</td>
+                      <td>{{rec.mob_no}}</td>
+                        <td>
+                            <a  href="{% url 'student_update_url' rec.id %}"> <input class="btn btn-outline-warning btn-sm me-3" value="UPDATE" type="button"></a>
+                            <a  href="{% url 'student_delete_url' rec.id %}" > <input class="btn btn-outline-danger btn-sm" value="DELETE" type="button"></a>
+                        </td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
